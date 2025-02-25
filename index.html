@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="main/styles/hero.css">
     <link rel="stylesheet" href="main/styles/features.css">
     <link rel="stylesheet" href="main/styles/footer.css">
+    <link rel="stylesheet" href="main/styles/chat.css"> <!-- Add chat styles -->
 </head>
 <body>
     <!-- Include Header -->
@@ -20,6 +21,18 @@
     <!-- Include Features -->
     <div id="features"></div>
 
+    <!-- Chat Section -->
+    <section class="chat-section">
+        <h2>Chat with DeepSeek</h2>
+        <div id="chat-box">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-btn">Send</button>
+        </div>
+    </section>
+
     <!-- Include Footer -->
     <div id="footer"></div>
 
@@ -30,6 +43,7 @@
     <!-- Scripts -->
     <script src="main/scripts/starfield.js"></script>
     <script src="main/scripts/particles.js"></script>
+    <script src="main/scripts/chat.js"></script> <!-- Add chat script -->
 
     <!-- Load Components -->
     <script>
