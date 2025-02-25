@@ -4,96 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Chat Bots</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="main/styles/global.css">
     <link rel="stylesheet" href="main/styles/header.css">
     <link rel="stylesheet" href="main/styles/hero.css">
     <link rel="stylesheet" href="main/styles/features.css">
     <link rel="stylesheet" href="main/styles/footer.css">
-    <link rel="stylesheet" href="main/styles/chat.css"> 
-     <!-- Add loading bar styles -->
+    <link rel="stylesheet" href="main/styles/loading.css"> <!-- Loading bar styles -->
 </head>
 <body>
-    <!-- Loading Bar -->
+    <!-- Loading Screen -->
     <div class="loading-screen">
         <div class="body">
-            <span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
+            <span><span></span><span></span><span></span><span></span></span>
             <div class="base">
                 <span></span>
                 <div class="face"></div>
             </div>
         </div>
         <div class="longfazers">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span><span></span>
         </div>
         <h1>On the mission...</h1>
     </div>
-    </head>
-<body>
-    <!-- Add chat styles -->
-</head>
-<body>
-    <!-- Include Header -->
-    <div id="header"></div>
 
-    <!-- Include Hero -->
-    <div id="hero"></div>
+    <!-- Main Content -->
+    <div class="website-content" style="display: none;">
+        <div id="header"></div>
+        <div id="hero"></div>
+        <div id="features"></div>
+        <div id="footer"></div>
+        
+        <!-- Background Canvases -->
+        <canvas id="starCanvas"></canvas>
+        <canvas id="particleCanvas"></canvas>
+    </div>
 
-    <!-- Include Features -->
-    <div id="features"></div>
-
-    <!-- Chat Section -->
-    <section class="chat-section">
-        <h2>Chat with DeepSeek</h2>
-        <div id="chat-box">
-            <!-- Chat messages will appear here -->
-        </div>
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type your message...">
-            <button id="send-btn">Send</button>
-        </div>
-    </section>
-
-    <!-- Include Footer -->
-    <div id="footer"></div>
-
-    <!-- Canvases -->
-    <canvas id="starCanvas"></canvas>
-    <canvas id="particleCanvas"></canvas>
-
-    <!-- Scripts -->
+    <!-- Scripts (Loaded at the bottom for performance) -->
     <script src="main/scripts/starfield.js"></script>
     <script src="main/scripts/particles.js"></script>
-    <script src="main/scripts/chat.js"></script> <!-- Add chat script -->
+    <script src="main/scripts/loading.js"></script>
 
-    <!-- Load Components -->
     <script>
-        // Load header
-        fetch('main/components/header.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
+        // Function to dynamically load components
+        function loadComponent(id, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(id).innerHTML = data);
+        }
 
-        // Load hero
-        fetch('main/components/hero.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('hero').innerHTML = data);
+        // Load components
+        loadComponent('header', 'main/components/header.html');
+        loadComponent('hero', 'main/components/hero.html');
+        loadComponent('features', 'main/components/features.html');
+        loadComponent('footer', 'main/components/footer.html');
 
-        // Load features
-        fetch('main/components/features.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('features').innerHTML = data);
-
-        // Load footer
-        fetch('main/components/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
+        // Hide loading screen and show website content once fully loaded
+        window.addEventListener('load', () => {
+            document.querySelector('.loading-screen').style.display = 'none';
+            document.querySelector('.website-content').style.display = 'block';
+        });
     </script>
 </body>
 </html>
