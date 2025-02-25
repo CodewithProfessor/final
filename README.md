@@ -1,7 +1,8 @@
 # Galaxy Chat Bots
-https://codewithprofessor.github.io/final/
-Welcome to **Galaxy Chat Bots**, a modern and interactive website showcasing AI-powered chatbots. This project features a stunning starfield animation, particle effects, and a responsive design.
 
+
+Welcome to **Galaxy Chat Bots**, a modern and interactive website showcasing AI-powered chatbots. This project features a stunning starfield animation, particle effects, and a responsive design.
+https://codewithprofessor.github.io/final/
 ## Features
 - **AI-Powered Chatbots**: Advanced AI for seamless interactions.
 - **24/7 Support**: Always available to assist your customers.
