@@ -4,7 +4,7 @@ const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
 // Replace with your DeepSeek API key
-const DEEPSEEK_API_KEY = 'your-deepseek-api-key';
+const DEEPSEEK_API_KEY = 'sk-6fecdc760296467b9cd0e269057fbc5f';
 
 // Function to add a message to the chat box
 function addMessageToChatBox(message, isUser = false) {
