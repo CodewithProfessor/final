@@ -1,4 +1,4 @@
-/* styles/features.css */
+/* Features Section */
 .features {
     padding: 6rem 2rem;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
@@ -14,8 +14,15 @@
     letter-spacing: 2px;
     position: relative;
     display: inline-block;
+    transition: transform 0.3s ease-in-out;
 }
 
+/* Enlarge "Our Features" text on hover */
+.features h2:hover {
+    transform: scale(1.1);
+}
+
+/* Underline Effect */
 .features h2::after {
     content: "";
     width: 50px;
@@ -42,11 +49,12 @@
 .feature-card {
     padding: 2rem;
     border-radius: 15px;
-    backdrop-filter: blur(8px); /* Slight base blur */
+    filter: blur(0); /* Base state: no blur */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
     border: 2px solid rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 /* Assign Different Neon Background Colors */
@@ -61,7 +69,7 @@
 .feature-card:nth-child(9) { background: rgba(255, 69, 0, 0.12); } /* Red-Orange */
 .feature-card:nth-child(10) { background: rgba(0, 191, 255, 0.12); } /* Sky Blue */
 
-/* RGB Glow Effect (Hover Only) */
+/* Neon Glow Effect (Hover Only) */
 .feature-card::before {
     content: "";
     position: absolute;
@@ -84,7 +92,7 @@
     opacity: 1;
 }
 
-/* RGB Glow Animation */
+/* Glow Animation */
 @keyframes glowing {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -94,16 +102,18 @@
 /* Hover Effects */
 .feature-card:hover {
     transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* No front shadow, only glow around edges */
+    filter: blur(0); /* Hovered card completely clear */
 }
 
-/* Slight Blur on Other Cards when One is Hovered */
+/* Slight Blur on Other Cards When One is Hovered */
 .features-grid:hover .feature-card {
-    filter: blur(2px); /* **Slight blur** */
+    filter: blur(1px); /* Minimized blur for non-hovered cards */
 }
 
+/* Ensure Hovered Card Stays Clear */
 .features-grid:hover .feature-card:hover {
-    filter: blur(0); /* Remove blur from active card */
+    filter: blur(0); /* No blur on hovered card */
 }
 
 /* Feature Card Text */
@@ -115,6 +125,7 @@
     letter-spacing: 1px;
 }
 
+/* Feature Card Paragraphs */
 .feature-card p {
     font-size: 1.1rem;
     color: #fff;
