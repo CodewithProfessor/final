@@ -4,22 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Chat Bots</title>
-
-    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main/styles/global.css">
     <link rel="stylesheet" href="main/styles/header.css">
     <link rel="stylesheet" href="main/styles/hero.css">
     <link rel="stylesheet" href="main/styles/features.css">
     <link rel="stylesheet" href="main/styles/footer.css">
-    <link rel="stylesheet" href="main/styles/chat.css">
-    <link rel="stylesheet" href="main/styles/loading.css"> <!-- Loading bar styles -->
+    <link rel="stylesheet" href="main/styles/loading.css"> <!-- Add loading bar styles -->
 </head>
 <body>
+    <!-- Loading Bar -->
+    <div class="loading-screen">
+        <div class="body">
+            <span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            <div class="base">
+                <span></span>
+                <div class="face"></div>
+            </div>
+        </div>
+        <div class="longfazers">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h1>On the mission...</h1>
+    </div>
 
-     <!-- Include Hero -->
-        <div id="loading"></div>
-
-    <!-- Main Website Content (Hidden initially) -->
+    <!-- Website Content -->
     <div class="website-content" style="display: none;">
         <!-- Include Header -->
         <div id="header"></div>
@@ -30,22 +47,10 @@
         <!-- Include Features -->
         <div id="features"></div>
 
-        <!-- Chat Section -->
-        <section class="chat-section">
-            <h2>Chat with DeepSeek</h2>
-            <div id="chat-box">
-                <!-- Chat messages will appear here -->
-            </div>
-            <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Type your message...">
-                <button id="send-btn">Send</button>
-            </div>
-        </section>
-
         <!-- Include Footer -->
         <div id="footer"></div>
 
-        <!-- Background Canvases -->
+        <!-- Canvases -->
         <canvas id="starCanvas"></canvas>
         <canvas id="particleCanvas"></canvas>
     </div>
@@ -53,28 +58,37 @@
     <!-- Scripts -->
     <script src="main/scripts/starfield.js"></script>
     <script src="main/scripts/particles.js"></script>
-    <script src="main/scripts/chat.js"></script>
-
     <script>
-        // Function to load components dynamically
-        function loadComponent(id, file) {
-            fetch(file)
-                .then(response => response.text())
-                .then(data => document.getElementById(id).innerHTML = data);
-        }
-
-        // Load components
-        loadComponent('header', 'main/components/header.html');
-        loadComponent('hero', 'main/components/hero.html');
-        loadComponent('features', 'main/components/features.html');
-        loadComponent('footer', 'main/components/footer.html');
-
-        // Hide loading screen and show content once fully loaded
-        window.addEventListener('load', () => {
-            document.querySelector('.loading-screen').style.display = 'none';
-            document.querySelector('.website-content').style.display = 'block';
-        });
+        // Hide loading screen and show website content after 5 seconds
+        setTimeout(() => {
+            const loadingScreen = document.querySelector('.loading-screen');
+            const websiteContent = document.querySelector('.website-content');
+            loadingScreen.style.display = 'none';
+            websiteContent.style.display = 'block';
+        }, 5000); // 5000 milliseconds = 5 seconds
     </script>
 
+    <!-- Load Components -->
+    <script>
+        // Load header
+        fetch('main/components/header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Load hero
+        fetch('main/components/hero.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('hero').innerHTML = data);
+
+        // Load features
+        fetch('main/components/features.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('features').innerHTML = data);
+
+        // Load footer
+        fetch('main/components/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
 </body>
 </html>
