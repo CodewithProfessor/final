@@ -13,28 +13,8 @@
     <link rel="stylesheet" href="main/styles/loading.css"> <!-- Add loading bar styles -->
 </head>
 <body>
-    <!-- Loading Bar -->
-    <div class="loading-screen">
-        <div class="body">
-            <span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-            <div class="base">
-                <span></span>
-                <div class="face"></div>
-            </div>
-        </div>
-        <div class="longfazers">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <h1>On the mission...</h1>
-    </div>
+    <!-- Loading Screen Container -->
+    <div id="loading-screen"></div>
 
     <!-- Website Content -->
     <div class="website-content" style="display: none;">
@@ -59,9 +39,16 @@
     <script src="main/scripts/starfield.js"></script>
     <script src="main/scripts/particles.js"></script>
     <script>
+        // Load the loading screen from loading.html
+        fetch('main/components/loading.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('loading-screen').innerHTML = data;
+            });
+
         // Hide loading screen and show website content after 5 seconds
         setTimeout(() => {
-            const loadingScreen = document.querySelector('.loading-screen');
+            const loadingScreen = document.getElementById('loading-screen');
             const websiteContent = document.querySelector('.website-content');
             loadingScreen.style.display = 'none';
             websiteContent.style.display = 'block';
