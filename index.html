@@ -4,31 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Chat Bots</title>
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/hero.css">
-    <link rel="stylesheet" href="styles/features.css">
-    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="main/styles/global.css">
+    <link rel="stylesheet" href="main/styles/header.css">
+    <link rel="stylesheet" href="main/styles/hero.css">
+    <link rel="stylesheet" href="main/styles/features.css">
+    <link rel="stylesheet" href="main/styles/footer.css">
 </head>
 <body>
     <!-- Include Header -->
-    <?php include 'components/header.html'; ?>
+    <div id="header"></div>
 
     <!-- Include Hero -->
-    <?php include 'components/hero.html'; ?>
+    <div id="hero"></div>
 
     <!-- Include Features -->
-    <?php include 'components/features.html'; ?>
+    <div id="features"></div>
 
     <!-- Include Footer -->
-    <?php include 'components/footer.html'; ?>
+    <div id="footer"></div>
 
     <!-- Canvases -->
     <canvas id="starCanvas"></canvas>
     <canvas id="particleCanvas"></canvas>
 
     <!-- Scripts -->
-    <script src="scripts/starfield.js"></script>
-    <script src="scripts/particles.js"></script>
+    <script src="main/scripts/starfield.js"></script>
+    <script src="main/scripts/particles.js"></script>
+
+    <!-- Load Components -->
+    <script>
+        // Load header
+        fetch('main/components/header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Load hero
+        fetch('main/components/hero.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('hero').innerHTML = data);
+
+        // Load features
+        fetch('main/components/features.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('features').innerHTML = data);
+
+        // Load footer
+        fetch('main/components/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
 </body>
 </html>
