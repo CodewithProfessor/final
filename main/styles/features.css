@@ -1,51 +1,154 @@
 /* styles/features.css */
 .features {
-    padding: 4rem 2rem;
-    background: rgba(0, 0, 0, 0.5);
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
     text-align: center;
 }
 
+/* Section Title */
 .features h2 {
-    font-size: 2.5rem;
-    color: #fff;
+    font-size: 3rem;
+    color: #00ffff;
     margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
 }
 
+.features h2::after {
+    content: "";
+    width: 50px;
+    height: 4px;
+    background: #00ffff;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Grid Layout */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
 }
 
+/* Feature Cards */
 .feature-card {
-    background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(8px); /* Slight base blur */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
+/* Assign Different Neon Background Colors */
+.feature-card:nth-child(1) { background: rgba(0, 255, 255, 0.12); } /* Cyan */
+.feature-card:nth-child(2) { background: rgba(255, 0, 255, 0.12); } /* Magenta */
+.feature-card:nth-child(3) { background: rgba(255, 255, 0, 0.12); } /* Yellow */
+.feature-card:nth-child(4) { background: rgba(0, 255, 0, 0.12); } /* Green */
+.feature-card:nth-child(5) { background: rgba(255, 165, 0, 0.12); } /* Orange */
+.feature-card:nth-child(6) { background: rgba(0, 0, 255, 0.12); } /* Blue */
+.feature-card:nth-child(7) { background: rgba(255, 20, 147, 0.12); } /* Pink */
+.feature-card:nth-child(8) { background: rgba(75, 0, 130, 0.12); } /* Indigo */
+.feature-card:nth-child(9) { background: rgba(255, 69, 0, 0.12); } /* Red-Orange */
+.feature-card:nth-child(10) { background: rgba(0, 191, 255, 0.12); } /* Sky Blue */
+
+/* RGB Glow Effect (Hover Only) */
+.feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #ffeb00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff);
+    background-size: 400% 400%;
+    animation: glowing 6s infinite linear;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+}
+
+/* Activate Glow Only on Hover */
+.feature-card:hover::before {
+    opacity: 1;
+}
+
+/* RGB Glow Animation */
+@keyframes glowing {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hover Effects */
 .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.5);
 }
 
+/* Slight Blur on Other Cards when One is Hovered */
+.features-grid:hover .feature-card {
+    filter: blur(2px); /* **Slight blur** */
+}
+
+.features-grid:hover .feature-card:hover {
+    filter: blur(0); /* Remove blur from active card */
+}
+
+/* Feature Card Text */
 .feature-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #00ffff;
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .feature-card p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #fff;
+    line-height: 1.6;
 }
 
+/* Icon Styling */
 .icon {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    color: #00ffff;
     margin-bottom: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features h2 {
+        font-size: 2.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .features h2 {
+        font-size: 2rem;
+    }
+
+    .feature-card {
+        padding: 1.2rem;
+    }
 }
