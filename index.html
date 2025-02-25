@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Chat Bots</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="main/styles/global.css">
     <link rel="stylesheet" href="main/styles/header.css">
     <link rel="stylesheet" href="main/styles/hero.css">
     <link rel="stylesheet" href="main/styles/features.css">
     <link rel="stylesheet" href="main/styles/footer.css">
+    <link rel="stylesheet" href="main/styles/chat.css">
     <link rel="stylesheet" href="main/styles/loading.css"> <!-- Loading bar styles -->
 </head>
 <body>
+
     <!-- Loading Screen -->
     <div class="loading-screen">
         <div class="body">
-            <span><span></span><span></span><span></span><span></span></span>
+            <span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
             <div class="base">
                 <span></span>
                 <div class="face"></div>
@@ -32,25 +36,44 @@
         <h1>On the mission...</h1>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Website Content (Hidden initially) -->
     <div class="website-content" style="display: none;">
+        <!-- Include Header -->
         <div id="header"></div>
+
+        <!-- Include Hero -->
         <div id="hero"></div>
+
+        <!-- Include Features -->
         <div id="features"></div>
+
+        <!-- Chat Section -->
+        <section class="chat-section">
+            <h2>Chat with DeepSeek</h2>
+            <div id="chat-box">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button id="send-btn">Send</button>
+            </div>
+        </section>
+
+        <!-- Include Footer -->
         <div id="footer"></div>
-        
+
         <!-- Background Canvases -->
         <canvas id="starCanvas"></canvas>
         <canvas id="particleCanvas"></canvas>
     </div>
 
-    <!-- Scripts (Loaded at the bottom for performance) -->
+    <!-- Scripts -->
     <script src="main/scripts/starfield.js"></script>
     <script src="main/scripts/particles.js"></script>
-    <script src="main/scripts/loading.js"></script>
+    <script src="main/scripts/chat.js"></script>
 
     <script>
-        // Function to dynamically load components
+        // Function to load components dynamically
         function loadComponent(id, file) {
             fetch(file)
                 .then(response => response.text())
@@ -63,11 +86,12 @@
         loadComponent('features', 'main/components/features.html');
         loadComponent('footer', 'main/components/footer.html');
 
-        // Hide loading screen and show website content once fully loaded
+        // Hide loading screen and show content once fully loaded
         window.addEventListener('load', () => {
             document.querySelector('.loading-screen').style.display = 'none';
             document.querySelector('.website-content').style.display = 'block';
         });
     </script>
+
 </body>
 </html>
