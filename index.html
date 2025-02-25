@@ -58,7 +58,15 @@
     <!-- Scripts -->
     <script src="main/scripts/starfield.js"></script>
     <script src="main/scripts/particles.js"></script>
-    <script src="main/scripts/loading.js"></script> <!-- Add loading bar script -->
+    <script>
+        // Hide loading screen and show website content after 5 seconds
+        setTimeout(() => {
+            const loadingScreen = document.querySelector('.loading-screen');
+            const websiteContent = document.querySelector('.website-content');
+            loadingScreen.style.display = 'none';
+            websiteContent.style.display = 'block';
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
 
     <!-- Load Components -->
     <script>
@@ -81,14 +89,6 @@
         fetch('main/components/footer.html')
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
-
-        // Hide loading screen and show website content once the page is fully loaded
-        window.addEventListener('load', () => {
-            const loadingScreen = document.querySelector('.loading-screen');
-            const websiteContent = document.querySelector('.website-content');
-            loadingScreen.style.display = 'none';
-            websiteContent.style.display = 'block';
-        });
     </script>
 </body>
 </html>
