@@ -4,42 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Chat Bots</title>
-    <link href="https://fonts.google.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="styles/global.css" type="text/css">
-    <link rel="stylesheet" href="styles/loading.css" type="text/css">
-    <link rel="stylesheet" href="styles/header.css" type="text/css">
-    <link rel="stylesheet" href="styles/hero.css" type="text/css">
-    <link rel="stylesheet" href="styles/features.css" type="text/css">
-    <link rel="stylesheet" href="styles/footer.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/features.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/loading.css"> <!-- Add loading bar styles -->
 </head>
 <body>
     <!-- Loading Screen Container -->
-    <div id="loading-screen"></div>
-    <!-- Canvases for background effects, positioned fixed to cover the entire screen -->
-    <canvas id="starCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></canvas>
-    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></canvas>
-    <!-- Website Content, hidden initially until components are loaded -->
+    <div id="loading-screen">
+        <!-- Loading screen content will be loaded here dynamically -->
+    </div>
+
+    <!-- Website Content -->
     <div class="website-content" style="display: none;">
         <!-- Include Header -->
         <div id="header"></div>
+
         <!-- Include Hero -->
         <div id="hero"></div>
+
         <!-- Include Features -->
         <div id="features"></div>
-        <!-- Include Login-Sign Up Section -->
-        <div id="login-sign-up">
-            <div class="login-toggle">
-                <button class="login-tab active" data-tab="login">Login</button>
-                <button class="login-tab" data-tab="sign-up">Sign Up</button>
-            </div>
-            <div class="login-content">
-                <div class="login-form-section" id="login-form"></div>
-                <div class="login-form-section" id="sign-up-form" style="display: none;"></div>
-            </div>
-        </div>
+
         <!-- Include Footer -->
         <div id="footer"></div>
+
+        <!-- Canvases -->
+        <canvas id="starCanvas"></canvas>
+        <canvas id="particleCanvas"></canvas>
     </div>
+
     <!-- Scripts -->
     <script src="scripts/starfield.js"></script>
     <script src="scripts/particles.js"></script>
@@ -52,54 +49,53 @@
             })
             .catch(error => console.error('Error loading loading.html:', error));
 
-        // Load all components
-        let promises = [
-            fetch('components/header.html').then(response => response.text()),
-            fetch('components/hero.html').then(response => response.text()),
-            fetch('components/features.html').then(response => response.text()),
-            fetch('components/footer.html').then(response => response.text()),
-            fetch('components/login.html').then(response => response.text()),
-            fetch('components/sign-up.html').then(response => response.text())
-        ];
+        // Hide loading screen and show website content after 5 seconds
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const websiteContent = document.querySelector('.website-content');
 
-        // Wait for all components to load
-        Promise.all(promises)
-            .then(results => {
-                // Insert the components
-                document.getElementById('header').innerHTML = results[0];
-                document.getElementById('hero').innerHTML = results[1];
-                document.getElementById('features').innerHTML = results[2];
-                document.getElementById('footer').innerHTML = results[3];
-                document.getElementById('login-form').innerHTML = results[4];
-                document.getElementById('sign-up-form').innerHTML = results[5];
-                // Hide loading screen and show website content
-                const loadingScreen = document.getElementById('loading-screen');
-                const websiteContent = document.querySelector('.website-content');
-                if (loadingScreen && websiteContent) {
-                    loadingScreen.style.display = 'none';
-                    websiteContent.style.display = 'block';
-                } else {
-                    console.error('Loading screen or website content not found.');
-                }
-                // Add toggle functionality
-                const loginTabs = document.querySelectorAll('.login-tab');
-                const loginFormSections = document.querySelectorAll('.login-form-section');
-                loginTabs.forEach((tab) => {
-                    tab.addEventListener('click', () => {
-                        const tabId = tab.getAttribute('data-tab');
-                        loginTabs.forEach((t) => t.classList.remove('active'));
-                        tab.classList.add('active');
-                        loginFormSections.forEach((section) => {
-                            if (section.id === tabId + '-form') {
-                                section.style.display = 'block';
-                            } else {
-                                section.style.display = 'none';
-                            }
-                        });
-                    });
-                });
+            if (loadingScreen && websiteContent) {
+                loadingScreen.style.display = 'none';
+                websiteContent.style.display = 'block';
+            } else {
+                console.error('Loading screen or website content not found.');
+            }
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
+
+    <!-- Load Components -->
+    <script>
+        // Load header
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
             })
-            .catch(error => console.error('Error loading components:', error));
+            .catch(error => console.error('Error loading header.html:', error));
+
+        // Load hero
+        fetch('components/hero.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('hero').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading hero.html:', error));
+
+        // Load features
+        fetch('components/features.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('features').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading features.html:', error));
+
+        // Load footer
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer.html:', error));
     </script>
 </body>
 </html>
