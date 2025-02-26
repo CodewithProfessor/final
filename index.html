@@ -11,7 +11,6 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="main/styles/global.css">
     <link rel="stylesheet" href="main/styles/loading.css">
-    <link rel="stylesheet" href="main/styles/register.css">
     <link rel="stylesheet" href="main/styles/header.css">
     <link rel="stylesheet" href="main/styles/hero.css">
     <link rel="stylesheet" href="main/styles/features.css">
@@ -73,13 +72,10 @@
         // Function to handle page transitions
         function showPage(pageId) {
             document.getElementById('loading-screen').style.display = 'none';
-            document.getElementById('auth-pages').style.display = 'none';
             document.querySelector('.website-content').style.display = 'none';
 
             if (pageId === 'loading-screen') {
                 document.getElementById('loading-screen').style.display = 'block';
-            } else if (pageId === 'auth-pages') {
-                document.getElementById('auth-pages').style.display = 'block';
             } else if (pageId === 'website-content') {
                 document.querySelector('.website-content').style.display = 'block';
             }
@@ -89,8 +85,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             const components = [
                 { url: 'main/components/loading.html', id: 'loading-screen' },
-                { url: 'main/components/signup.html', id: 'signup' },
-                { url: 'main/components/login.html', id: 'login' },
                 { url: 'main/components/header.html', id: 'header' },
                 { url: 'main/components/hero.html', id: 'hero' },
                 { url: 'main/components/features.html', id: 'features' },
@@ -105,8 +99,8 @@
 
                     // Simulate loading delay (e.g., 3 seconds)
                     setTimeout(() => {
-                        // After loading, show signup/login pages
-                        showPage('auth-pages');
+                        // After loading, show the website content
+                        showPage('website-content');
                     }, 3000);
                 })
                 .catch(error => {
