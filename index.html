@@ -12,16 +12,16 @@
     <link rel="stylesheet" href="main/styles/footer.css">
     <link rel="stylesheet" href="main/styles/chat.css">
     <link rel="stylesheet" href="main/styles/register.css">
-    <link rel="stylesheet" href="main/styles/loading.css">
+    <link rel="stylesheet" href="main/styles/loading.css"> 
+<!-- Add loading bar styles -->
 </head>
 <body>
     <!-- Loading Screen Container -->
     <div id="loading-screen">
-        <!-- Loading screen content will be loaded here dynamically -->
     </div>
 
     <!-- Website Content -->
-    <div class="website-content" style="display: none;">
+    <div class="website-content" style="display: none;"></div>
         <!-- Include Header -->
         <div id="header"></div>
 
@@ -30,6 +30,10 @@
 
         <!-- Include Features -->
         <div id="features"></div>
+
+        <!-- Include Register -->
+        <div id="register"></div>
+    
 
         <!-- Include Footer -->
         <div id="footer"></div>
@@ -42,42 +46,74 @@
     <!-- Scripts -->
     <script src="main/scripts/starfield.js"></script>
     <script src="main/scripts/particles.js"></script>
+    <script src="main/scripts/chat.js"></script>
+    <script src="main/scripts/script1.js"></script>
+    <script src="main/scripts/script2.js"></script>
     <script>
-        // Function to fetch and inject HTML content
-        function loadComponent(url, elementId) {
-            return fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Failed to load ${url}: ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById(elementId).innerHTML = data;
-                })
-                .catch(error => console.error(error));
-        }
-
-        // Load all components
-        const components = [
-            { url: 'main/components/loading.html', id: 'loading-screen' },
-            { url: 'main/components/header.html', id: 'header' },
-            { url: 'main/components/hero.html', id: 'hero' },
-            { url: 'main/components/features.html', id: 'features' },
-            { url: 'main/components/footer.html', id: 'footer' }
-        ];
-
-        // Fetch and inject all components
-        Promise.all(components.map(component => loadComponent(component.url, component.id)))
-            .then(() => {
-                // Hide loading screen and show website content
-                document.getElementById('loading-screen').style.display = 'none';
-                document.querySelector('.website-content').style.display = 'block';
+        // Load the loading screen from loading.html
+        fetch('main/components/loading.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('loading-screen').innerHTML = data;
             })
-            .catch(error => {
-                console.error('Error loading components:', error);
-                // Optionally, display an error message to the user
-            });
+            .catch(error => console.error('Error loading loading.html:', error));
+
+        // Hide loading screen and show website content after 5 seconds
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const websiteContent = document.querySelector('.website-content');
+
+            if (loadingScreen && websiteContent) {
+                loadingScreen.style.display = 'none';
+                websiteContent.style.display = 'block';
+            } else {
+                console.error('Loading screen or website content not found.');
+            }
+        }, 3000);                                                                         // 5000 milliseconds = 5 seconds
+    </script>
+
+    <!-- Load Components -->
+    <script>
+        // Load header
+        fetch('main/components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header.html:', error));
+
+        // Load hero
+        fetch('main/components/hero.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('hero').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading hero.html:', error));
+
+        // Load features
+        fetch('main/components/features.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('features').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading features.html:', error));
+
+        
+        // Load register
+        fetch('main/components/register.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('register').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading registere.html:', error));
+
+        // Load footer
+        fetch('main/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer.html:', error));
     </script>
 </body>
 </html>
