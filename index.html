@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Chat Bots</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main/styles/global.css">
-    <link rel="stylesheet" href="main/styles/header.css">
-    <link rel="stylesheet" href="main/styles/hero.css">
-    <link rel="stylesheet" href="main/styles/features.css">
-    <link rel="stylesheet" href="main/styles/footer.css">
-    <link rel="stylesheet" href="main/styles/loading.css"> <!-- Add loading bar styles -->
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/features.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/loading.css"> <!-- Add loading bar styles -->
 </head>
 <body>
     <!-- Loading Screen Container -->
@@ -38,11 +38,11 @@
     </div>
 
     <!-- Scripts -->
-    <script src="main/scripts/starfield.js"></script>
-    <script src="main/scripts/particles.js"></script>
+    <script src="scripts/starfield.js"></script>
+    <script src="scripts/particles.js"></script>
     <script>
         // Load the loading screen from loading.html
-        fetch('main/components/loading.html')
+        fetch('components/loading.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('loading-screen').innerHTML = data;
@@ -66,7 +66,7 @@
     <!-- Load Components -->
     <script>
         // Load header
-        fetch('main/components/header.html')
+        fetch('components/header.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header').innerHTML = data;
@@ -74,7 +74,7 @@
             .catch(error => console.error('Error loading header.html:', error));
 
         // Load hero
-        fetch('main/components/hero.html')
+        fetch('components/hero.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('hero').innerHTML = data;
@@ -82,7 +82,7 @@
             .catch(error => console.error('Error loading hero.html:', error));
 
         // Load features
-        fetch('main/components/features.html')
+        fetch('components/features.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('features').innerHTML = data;
@@ -90,7 +90,7 @@
             .catch(error => console.error('Error loading features.html:', error));
 
         // Load footer
-        fetch('main/components/footer.html')
+        fetch('components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer').innerHTML = data;
